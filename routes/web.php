@@ -65,6 +65,9 @@ Route::get('/posts/{plan}',[PlanController::class,'show'])
 
 Route::get('/news',[NewsController::class,'index'])
     ->name('news.index');
+Route::get('/news/{new}',[NewsController::class,'show'])
+    ->name('news.show');
+
 
 
 

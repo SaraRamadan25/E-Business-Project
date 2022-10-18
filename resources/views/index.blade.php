@@ -240,11 +240,12 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($users as $user)
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="single-team-member">
                         <div class="team-img">
                             <a href="#">
-                                <img src="assets/assets/img/team/1.jpg" alt="">
+                                <img src="a{{ $user->avatar }}" alt="avatar">
                             </a>
                             <div class="team-social-icon text-center">
                                 <ul>
@@ -267,111 +268,13 @@
                             </div>
                         </div>
                         <div class="team-content text-center">
-                            <h4>Jhon Mickel</h4>
-                            <p>Seo</p>
+                            <h4>{{ $user->name }}</h4>
+                            <p>{{ $user->title }}</p>
                         </div>
                     </div>
                 </div>
                 <!-- End column -->
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="single-team-member">
-                        <div class="team-img">
-                            <a href="#">
-                                <img src="assets/assets/img/team/2.jpg" alt="">
-                            </a>
-                            <div class="team-social-icon text-center">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center">
-                            <h4>Andrew Arnold</h4>
-                            <p>Web Developer</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="single-team-member">
-                        <div class="team-img">
-                            <a href="#">
-                                <img src="assets/assets/img/team/3.jpg" alt="">
-                            </a>
-                            <div class="team-social-icon text-center">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center">
-                            <h4>Lellien Linda</h4>
-                            <p>Web Design</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="single-team-member">
-                        <div class="team-img">
-                            <a href="#">
-                                <img src="assets/assets/img/team/4.jpg" alt="">
-                            </a>
-                            <div class="team-social-icon text-center">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="bi bi-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center">
-                            <h4>Jhon Powel</h4>
-                            <p>Seo Expert</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End column -->
+                @endforeach
             </div>
         </div>
     </div><!-- End Team Section -->
@@ -544,14 +447,14 @@
                         @foreach($plans as $plan)
                         <h3>{{ $plan->name }} <br /> <span>{{ $plan->price }}/ month</span></h3>
                         <ol>
-                            <li class="check"><i class="bi bi-check"></i><span>Online system</span></li>
-                            <li class="check"><i class="bi bi-x"></i><span>Full access</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>{{ $plan->features }}</span></li>
+                           {{-- <li class="check"><i class="bi bi-x"></i><span>Full access</span></li>
                             <li class="check"><i class="bi bi-check"></i><span>Free apps</span></li>
                             <li class="check"><i class="bi bi-check"></i><span>Multiple slider</span></li>
                             <li class="cross"><i class="bi bi-x"></i><span>Free domin</span></li>
                             <li class="cross"><i class="bi bi-x"></i><span>Support unlimited</span></li>
                             <li class="check"><i class="bi bi-check"></i><span>Payment online</span></li>
-                            <li class="check"><i class="bi bi-x"></i><span>Cash back</span></li>
+                            <li class="check"><i class="bi bi-x"></i><span>Cash back</span></li>--}}
                         </ol>
                         @endforeach
                         <button>sign up now</button>
@@ -666,30 +569,30 @@
                         <div class="single-blog">
                             <div class="single-blog-img">
                                 <a href="blog.html">
-                                    @foreach($posts as $post)
-                                    <img src="{{ $post->image }}" alt="post_image">
+                                    @foreach($news as $new)
+                                    <img src="{{ $new->image }}" alt="post_image">
                                 </a>
                             </div>
                             <div class="blog-meta">
                   <span class="comments-type">
                     <i class="fa fa-comment-o"></i>
-                    <a href="#">{{ $post->comments()->count() }}</a>
+                    <a href="#">comment</a>
                   </span>
                                 <span class="date-type">
-                    <i class="fa fa-calendar"></i>{{ $post->created_at ? $post->created_at->diffForHumans(): '-'  }}
+                    <i class="fa fa-calendar"></i>{{ $new->created_at ? $post->created_at->diffForHumans(): '-'  }}
                   </span>
                             </div>
                             <div class="blog-text">
                                 <h4>
-                                    <a href="blog.html">{{ $post->title }}</a>
+                                    <a href="blog.html">{{ $new->title }}</a>
                                 </h4>
                                 <p>
-                             {{ $post->excerpt }}
+                             {{ $new->description }}
                                 </p>
                             </div>
                             <span>
                                 @endforeach
-                  <a href="blog.html" class="ready-btn">Read more</a>
+                  <a href="/news/{id}" class="ready-btn">Read more</a>
                 </span>
                         </div>
 
@@ -783,14 +686,15 @@
                                 </div>
 
                                 <div class="form-group mt-3">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                                </div>
+                                <div class="form-group mt-3">
                                     <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
                                 </div>
                                 <div class="form-group mt-3">
                                     <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                                 </div>
-                                <div class="form-group mt-3">
-                                    <input type="email" class="form-control" name="email" id="subject" placeholder="Email" required>
-                                </div>
+
                                 <div class="my-3">
                                     <div class="loading">Loading</div>
                                     <div class="error-message"></div>
