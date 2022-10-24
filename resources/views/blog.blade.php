@@ -101,30 +101,12 @@
                                 <div class="popular-tag left-side-tags left-blog">
                                     <h4>popular tags</h4>
                                     <ul>
+                                        @foreach($tags as $tag)
                                         <li>
-                                            <a href="#">Portfolio</a>
+                                            <a href="#">{{ $tag->name }}</a>
                                         </li>
-                                        <li>
-                                            <a href="#">Project</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Design</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Website</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Joomla</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Html</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">wordpress</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Masonry</a>
-                                        </li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
                             </div>

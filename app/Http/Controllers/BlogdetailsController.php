@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class BlogdetailsController extends Controller
@@ -12,6 +14,8 @@ class BlogdetailsController extends Controller
     {
         $posts = Post::all();
         $comments = Comment::all();
-        return view('blog-details',compact('posts','comments'));
+        $tags = Tag::all();
+        $categories = Category::all();
+        return view('blog-details',compact('posts','comments','tags','categories'));
     }
 }

@@ -13,7 +13,8 @@ class ContactController extends Controller
         request()->validate([
             'name'=>'required|string',
             'subject'=>'required|string',
-            'message'=>'required|string'
+            'message'=>'required|string',
+            'email'=>'required|email'
 
         ]);
 
@@ -21,6 +22,7 @@ class ContactController extends Controller
             'name' =>request('name'),
             'subject' =>request('subject'),
             'message' =>request('message'),
+            'email' =>request('email')
         ]);
         return redirect()->route('home');
 

@@ -18,11 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('password');
-            $table->string('title');
-            $table->string('links');
-            $table->integer('plan_id')->constrained()->cascadeOnDelete();
+            $table->string('title')->nullable();
+            $table->string('links')->nullable();
+            $table->integer('plan_id')->nullable()->constrained()->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();
 

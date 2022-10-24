@@ -44,52 +44,18 @@
                             <div class="left-blog">
                                 <h4>recent post</h4>
                                 <div class="recent-post">
+                           @foreach($posts as $post)
                                     <!-- start single post -->
                                     <div class="recent-single-post">
                                         <div class="post-img">
                                             <a href="#">
-                                                <img src="assets/img/blog/1.jpg" alt="">
+                                                <img src="{{ $post->image }}" alt="image">
                                             </a>
                                         </div>
                                         <div class="pst-content">
-                                            <p><a href="#"> Redug Lerse dolor sit amet consect adipis elit.</a></p>
+                                            <p><a href="#">{{ $post->excerpt }}</a></p>
                                         </div>
-                                    </div>
-                                    <!-- End single post -->
-                                    <!-- start single post -->
-                                    <div class="recent-single-post">
-                                        <div class="post-img">
-                                            <a href="#">
-                                                <img src="assets/img/blog/2.jpg" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="pst-content">
-                                            <p><a href="#"> Redug Lerse dolor sit amet consect adipis elit.</a></p>
-                                        </div>
-                                    </div>
-                                    <!-- End single post -->
-                                    <!-- start single post -->
-                                    <div class="recent-single-post">
-                                        <div class="post-img">
-                                            <a href="#">
-                                                <img src="assets/img/blog/3.jpg" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="pst-content">
-                                            <p><a href="#"> Redug Lerse dolor sit amet consect adipis elit.</a></p>
-                                        </div>
-                                    </div>
-                                    <!-- End single post -->
-                                    <!-- start single post -->
-                                    <div class="recent-single-post">
-                                        <div class="post-img">
-                                            <a href="#">
-                                                <img src="assets/img/blog/4.jpg" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="pst-content">
-                                            <p><a href="#"> Redug Lerse dolor sit amet consect adipis elit.</a></p>
-                                        </div>
+                                        @endforeach
                                     </div>
                                     <!-- End single post -->
                                 </div>
@@ -99,29 +65,13 @@
                         <div class="single-blog-page">
                             <div class="left-blog">
                                 <h4>categories</h4>
+                                @foreach($categories as $category)
                                 <ul>
                                     <li>
-                                        <a href="#">Portfolio</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Project</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">wordpress</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Joomla</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Html</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Website</a>
+                                        <a href="#">{{ $category->name }}</a>
                                     </li>
                                 </ul>
+                                @endforeach
                             </div>
                         </div>
                         <div class="single-blog-page">
@@ -151,30 +101,12 @@
                                 <div class="popular-tag left-side-tags left-blog">
                                     <h4>popular tags</h4>
                                     <ul>
+                                        @foreach($tags as $tag)
                                         <li>
-                                            <a href="#">Portfolio</a>
+                                            <a href="#">{{ $tag->name }}</a>
                                         </li>
-                                        <li>
-                                            <a href="#">Project</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Design</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">wordpress</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Joomla</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Html</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Masonry</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Website</a>
-                                        </li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
                             </div>
@@ -198,30 +130,22 @@
                                         <span class="author-meta"><i class="bi bi-person"></i> <a href="#">{{ $post->user->name }}</a></span>
                                         <span><i class="bi bi-clock"></i> {{ $post->created_at ? $post->created_at->diffForHumans(): '-'  }}  </span>
                                         <span class="tag-meta">
+                                            @foreach($tags as $tag)
                         <i class="bi bi-folder"></i>
-                        <a href="#">{{ $post->tag }}</a>,
-                        <a href="#">{{ $post->tag }}</a>
+                        <a href="#">{{ $tag->name }}</a>,
                       </span>
-                                        <span>
-                        <i class="bi bi-tags"></i>
-                        <a href="#">{{ $post->tag }}</a>,
-                        <a href="#"> {{ $post->tag }}</a>,
-                        <a href="#">{{ $post->tag }}</a>
-                      </span>
+
+                                        @endforeach
                                         <span><i class="bi bi-chat"></i> <a href="#">{{ $post->comments()->count() }} comments</a></span>
                                     </div>
                                     <div class="entry-content">
                                         <p>{{ $post->excerpt }}</p>
-                                        <blockquote>
-                                            <p>Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur. In venenatis elit ac ultrices convallis. Duis est nisi, tincidunt ac urna sed, cursus blandit lectus. In ullamcorper sit amet ligula ut eleifend. Proin dictum
-                                                tempor ligula, ac feugiat metus. Sed finibus tortor eu scelerisque scelerisque.</p>
-                                        </blockquote>
+
                                         <p>{{ $post->content }}</p>
                                     </div>
                                 </div>
                             </article>
                             <div class="clear"></div>
-                            @endforeach
 
                             <div class="single-post-comments">
                                 <div class="comments-area">
@@ -236,11 +160,13 @@
                                                         <img src="{{ $post->user->avatar }}" alt="post-author">
                                                     </div>
                                                     <div class="comments-content-wrap">
-                              <span>
+                                                        @endforeach
+
+                                                        <span>
                                   @foreach($comments as $comment)
                                 <b><a href="#">{{ $comment->name }}</a></b>
 
-                                <span class="post-time">{{ $post->created_at ? $post->created_at->diffForHumans(): '-'  }}</span>
+                                <span class="post-time">{{ $comment->created_at ? $comment->created_at->diffForHumans(): '-'  }}</span>
                                 <a href="#">Reply</a>
                               </span>
                                                         <p> {{ $comment->content }}</p>

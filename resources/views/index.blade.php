@@ -432,6 +432,17 @@
     </div><!-- End Portfolio Section -->
 
     <!-- ======= Pricing Section ======= -->
+
+
+
+
+
+
+
+
+
+
+    <!-- ======= Pricing Section ======= -->
     <div id="pricing" class="pricing-area area-padding">
         <div class="container">
             <div class="row">
@@ -445,32 +456,31 @@
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="pri_table_list">
                         @foreach($plans as $plan)
-                        <h3>{{ $plan->name }} <br /> <span>{{ $plan->price }}/ month</span></h3>
-                        <ol>
-                            <li class="check"><i class="bi bi-check"></i><span>{{ $plan->features }}</span></li>
-                           {{-- <li class="check"><i class="bi bi-x"></i><span>Full access</span></li>
-                            <li class="check"><i class="bi bi-check"></i><span>Free apps</span></li>
-                            <li class="check"><i class="bi bi-check"></i><span>Multiple slider</span></li>
-                            <li class="cross"><i class="bi bi-x"></i><span>Free domin</span></li>
-                            <li class="cross"><i class="bi bi-x"></i><span>Support unlimited</span></li>
-                            <li class="check"><i class="bi bi-check"></i><span>Payment online</span></li>
-                            <li class="check"><i class="bi bi-x"></i><span>Cash back</span></li>--}}
-                        </ol>
+                        <h3>{{ $plan->name }} <br /> <span>{{ $plan->price }} / month</span></h3>
                         @endforeach
+                        @foreach($plan->features as $feature)
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+
+                                </div>
+                        <ol>
+
+                            <li class="check"><i class="bi bi-check"></i><span>{{$feature}}</span></li>
+
+                        </ol>
+                            @endforeach
                         <button>sign up now</button>
                     </div>
                 </div>
 
-                    </div>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="pri_table_list">
 
-                    </div>
                 </div>
             </div>
         </div>
     </div><!-- End Pricing Section -->
+
+
 
     <!-- ======= Testimonials Section ======= -->
     <div id="testimonials" class="testimonials">
@@ -569,8 +579,8 @@
                         <div class="single-blog">
                             <div class="single-blog-img">
                                 <a href="blog.html">
-                                    @foreach($news as $new)
-                                    <img src="{{ $new->image }}" alt="post_image">
+                                    @foreach($newss as $news)
+                                    <img src="{{ asset('storage/photos/UjjWyrTuSVJOhWlwqMiTzTfrZt50zr790wXYDLIK.jpg') }}" alt="post_image">
                                 </a>
                             </div>
                             <div class="blog-meta">
@@ -579,22 +589,23 @@
                     <a href="#">comment</a>
                   </span>
                                 <span class="date-type">
-                    <i class="fa fa-calendar"></i>{{ $new->created_at ? $post->created_at->diffForHumans(): '-'  }}
+                    <i class="fa fa-calendar"></i>{{ $news->created_at ? $news->created_at->diffForHumans(): '-'  }}
                   </span>
                             </div>
                             <div class="blog-text">
                                 <h4>
-                                    <a href="blog.html">{{ $new->title }}</a>
+                                    <a href="blog.html">{{ $news->title }}</a>
                                 </h4>
                                 <p>
-                             {{ $new->description }}
+                             {{ $news->description }}
                                 </p>
                             </div>
                             <span>
                                 @endforeach
-                  <a href="/news/{id}" class="ready-btn">Read more</a>
+                  <a href="/news/{{ $news->id }}" class="ready-btn">Read more</a>
                 </span>
                         </div>
+
 
                     <!-- End Right Blog-->
                 </div>
@@ -679,7 +690,7 @@
                     <!-- Start  contact -->
                     <div class="col-md-6">
                         <div class="form contact-form">
-                            <form action="{{route('home.store')}}" method="post" role="form" class="php-email-form">
+                            <form action="{{route('contact.store')}}" method="post" role="form" class="php-email-form">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>

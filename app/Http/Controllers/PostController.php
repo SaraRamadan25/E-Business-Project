@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,9 +19,13 @@ class PostController extends Controller
     public function show(Post $post){
         return view('posts.show',compact('post'));
     }
+
     public function create()
-    { //only people who logged in
-        return view('posts.create');
+    {
+        return view('posts.create',[
+            'tags'=>Tag::all(),
+            'categories'=>Category::all()
+   ]);
     }
 
     public function store()
@@ -36,7 +42,7 @@ class PostController extends Controller
 
         $post = Post::create([
             'name' =>request('name'),
-            'image'=>request('image'),
+            'image'=>request('image')->store('photos','public'),
             'title' =>request('title'),
             'excerpt' =>request('excerpt'),
             'content' =>request('content'),
@@ -48,7 +54,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        //admin and the person who wrote the post
+
         return view('posts.edit',compact('post'));
     }
 
@@ -59,6 +65,12 @@ class PostController extends Controller
             'excerpt'=>'required|string',
         ]);
         $post->update(request()->all());
+        return redirect()->route('posts.index');
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
         return redirect()->route('posts.index');
     }
 
