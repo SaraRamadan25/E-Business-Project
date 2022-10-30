@@ -47,8 +47,7 @@
                                     <div class="recent-single-post">
                                         <div class="post-img">
                                             <a href="#">
-                                                <img src="{{ $post->image }}" alt="image">
-                                            </a>
+                                                <img src="/storage/{{ $post->image }}" class="w-100">                                            </a>
                                         </div>
                                         <div class="pst-content">
                                             <p><a href="#"> {{ $post->excerpt }}</a></p>
@@ -122,7 +121,7 @@
                             <div class="single-blog">
                                 <div class="single-blog-img">
                                     <a href="blog-details.html">
-                                        <img src="{{ $post->image }}" alt="img_which_uploaded">
+                                        <img src="/storage/{{ $post->image }}" class="w-100">                                            </a>
                                     </a>
                                 </div>
                                 <div class="blog-meta">

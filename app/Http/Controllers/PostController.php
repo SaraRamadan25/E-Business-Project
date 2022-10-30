@@ -33,7 +33,7 @@ class PostController extends Controller
 
         request()->validate([
             'name'=>'required|string',
-            'image'=>'image',
+            'image'=>'required|image',
             'title'=>'required|string',
             'excerpt'=>'required|string',
             'content'=>'required|string'
@@ -46,7 +46,7 @@ class PostController extends Controller
             'title' =>request('title'),
             'excerpt' =>request('excerpt'),
             'content' =>request('content'),
-            'user_id' => '1',
+            'user_id' => auth()->id(),
         ]);
         return redirect()->route('posts.index');
 

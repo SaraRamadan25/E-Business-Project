@@ -2,12 +2,22 @@
       method="POST" enctype="multipart/form-data">
 
     @csrf
-    <input type="text" name="name">
-    <input type="text" name="title">
-    <input type="text" name="excerpt">
-    <input type="file" name="image">
-    <input type="text" name="content">
-    <select multiple name="tags[]">
+   Name <input type="text" name="name">
+    <br />
+    <br />
+   Title <input type="text" name="title">
+    <br />
+    <br />
+     Excerpt <input type="text" name="excerpt">
+    <br />
+    <br />
+   upload your post img <input type="file" name="image">
+    <br />
+    <br />
+    Content <input type="text" name="content">
+    <br />
+    <br />
+   Your tags <select multiple name="tags[]">
         @foreach($tags as $tag)
             <option value="{{ $tag->id }}">
                 {{ $tag->name }}
@@ -15,6 +25,7 @@
         @endforeach
     </select>
 
+Your Categories
         <select multiple name="categories[]">
             @foreach($categories as $category)
                 <option value="{{ $category->id }}">

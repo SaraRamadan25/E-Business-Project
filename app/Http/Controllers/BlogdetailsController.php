@@ -12,7 +12,7 @@ class BlogdetailsController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->paginate(1);
         $comments = Comment::all();
         $tags = Tag::all();
         $categories = Category::all();

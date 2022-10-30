@@ -15,7 +15,7 @@ public function index()
     $plans = Plan::all();
     $posts = Post::all();
     $users = User::all();
-    $newss = News::all();
+    $newss = News::latest()->take(3)->get();
     return view('index',compact('plans','posts','users','newss'));
 }
 }

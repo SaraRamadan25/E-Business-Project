@@ -38,28 +38,30 @@
                                 </div>
                             </form>
                             <!-- search option end -->
+
                         </div>
                         <div class="single-blog-page">
                             <!-- recent start -->
                             <div class="left-blog">
                                 <h4>recent post</h4>
                                 <div class="recent-post">
-                           @foreach($posts as $post)
+                                @foreach($posts as $post)
                                     <!-- start single post -->
                                     <div class="recent-single-post">
                                         <div class="post-img">
                                             <a href="#">
-                                                <img src="{{ $post->image }}" alt="image">
+                                                <img src="/storage/{{ $post->image }}" class="w-100">
                                             </a>
                                         </div>
                                         <div class="pst-content">
                                             <p><a href="#">{{ $post->excerpt }}</a></p>
                                         </div>
-                                        @endforeach
                                     </div>
+                                @endforeach
                                     <!-- End single post -->
                                 </div>
                             </div>
+                            <!-- recent end -->
                             <!-- recent end -->
                         </div>
                         <div class="single-blog-page">
@@ -157,7 +159,9 @@
                                             <li class="threaded-comments">
                                                 <div class="comments-details">
                                                     <div class="comments-list-img">
-                                                        <img src="{{ $post->user->avatar }}" alt="post-author">
+                                                        @if(auth()->user())
+                                                        <img src="/storage/{{ $post->user->avatar }}" class="w-100">
+                                                        @endif
                                                     </div>
                                                     <div class="comments-content-wrap">
                                                         @endforeach

@@ -245,7 +245,7 @@
                     <div class="single-team-member">
                         <div class="team-img">
                             <a href="#">
-                                <img src="a{{ $user->avatar }}" alt="avatar">
+                                <img src="/storage/photos/{{ $user->avatar }}" class="w-100">
                             </a>
                             <div class="team-social-icon text-center">
                                 <ul>
@@ -431,18 +431,9 @@
         </div>
     </div><!-- End Portfolio Section -->
 
-    <!-- ======= Pricing Section ======= -->
 
 
-
-
-
-
-
-
-
-
-    <!-- ======= Pricing Section ======= -->
+    {{--<!-- ======= Pricing Section ======= -->
     <div id="pricing" class="pricing-area area-padding">
         <div class="container">
             <div class="row">
@@ -455,18 +446,79 @@
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="pri_table_list">
-                        @foreach($plans as $plan)
-                        <h3>{{ $plan->name }} <br /> <span>{{ $plan->price }} / month</span></h3>
-                        @endforeach
-                        @foreach($plan->features as $feature)
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-
-                                </div>
+                        <h3>basic <br /> <span>$80 / month</span></h3>
                         <ol>
+                            <li class="check"><i class="bi bi-check"></i><span>Online system</span></li>
+                            <li class="check"><i class="bi bi-x"></i><span>Full access</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Free apps</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Multiple slider</span></li>
+                            <li class="cross"><i class="bi bi-x"></i><span>Free domin</span></li>
+                            <li class="cross"><i class="bi bi-x"></i><span>Support unlimited</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Payment online</span></li>
+                            <li class="check"><i class="bi bi-x"></i><span>Cash back</span></li>
+                        </ol>
+                        <button>sign up now</button>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="pri_table_list active">
+                        <span class="saleon">top sale</span>
+                        <h3>standard <br /> <span>$110 / month</span></h3>
+                        <ol>
+                            <li class="check"><i class="bi bi-check"></i><span>Online system</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Full access</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Free apps</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Multiple slider</span></li>
+                            <li class="cross"><i class="bi bi-x"></i><span>Free domin</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Support unlimited</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Payment online</span></li>
+                            <li class="cross"><i class="bi bi-x"></i><span>Cash back</span></li>
+                        </ol>
+                        <button>sign up now</button>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="pri_table_list">
+                        <h3>premium <br /> <span>$150 / month</span></h3>
+                        <ol>
+                            <li class="check"><i class="bi bi-check"></i><span>Online system</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Full access</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Free apps</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Multiple slider</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Free domin</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Support unlimited</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Payment online</span></li>
+                            <li class="check"><i class="bi bi-check"></i><span>Cash back</span></li>
+                        </ol>
+                        <button>sign up now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Pricing Section -->--}}
+
+
+    <!-- ======= Pricing Section ======= -->
+   <div id="pricing" class="pricing-area area-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="section-headline text-center">
+                        <h2>Pricing Table</h2>
+                    </div>
+                </div>
+            </div>
+            @foreach($plans as $plan)
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="pri_table_list">
+                        <h3>{{ $plan->name }} <br /> <span>{{ $plan->price }} / month</span></h3>
+
+                            @foreach($plan->features as $feature)
 
                             <li class="check"><i class="bi bi-check"></i><span>{{$feature}}</span></li>
 
-                        </ol>
+
                             @endforeach
                         <button>sign up now</button>
                     </div>
@@ -479,7 +531,7 @@
             </div>
         </div>
     </div><!-- End Pricing Section -->
-
+@endforeach
 
 
     <!-- ======= Testimonials Section ======= -->
@@ -561,6 +613,11 @@
         </div>
     </div><!-- End Testimonials Section -->
 
+
+
+
+
+
     <!-- ======= Blog Section ======= -->
     <div id="blog" class="blog-area">
         <div class="blog-inner area-padding">
@@ -575,18 +632,18 @@
                 </div>
                 <div class="row">
                     <!-- Start Left Blog -->
-                    <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-md-4 col-sm-4 col-xs-12 ">
                         <div class="single-blog">
                             <div class="single-blog-img">
                                 <a href="blog.html">
                                     @foreach($newss as $news)
-                                    <img src="{{ asset('storage/photos/UjjWyrTuSVJOhWlwqMiTzTfrZt50zr790wXYDLIK.jpg') }}" alt="post_image">
+                                        <img src="/storage/{{ $news->image }}" class="w-100">
                                 </a>
                             </div>
                             <div class="blog-meta">
                   <span class="comments-type">
                     <i class="fa fa-comment-o"></i>
-                    <a href="#">comment</a>
+                    <a href="#">{{ $news->comment ? $news->comment ?->count() : '0' }} comment</a>
                   </span>
                                 <span class="date-type">
                     <i class="fa fa-calendar"></i>{{ $news->created_at ? $news->created_at->diffForHumans(): '-'  }}
@@ -597,21 +654,26 @@
                                     <a href="blog.html">{{ $news->title }}</a>
                                 </h4>
                                 <p>
-                             {{ $news->description }}
+                                    {{ $news->description }}
                                 </p>
                             </div>
                             <span>
-                                @endforeach
-                  <a href="/news/{{ $news->id }}" class="ready-btn">Read more</a>
+                                <a href="/news/{{ $news->id }}" class="btn btn-primary rounded-4 mb-3">Read more </a>
                 </span>
+
                         </div>
+                    @endforeach
 
 
-                    <!-- End Right Blog-->
+                        <!-- End Right Blog-->
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </div><!-- End Blog Section -->
+        </div><!-- End Blog Section -->
+
+
+
 
     <!-- ======= Suscribe Section ======= -->
     <div class="suscribe-area">

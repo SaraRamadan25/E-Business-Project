@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PostController;
+use App\Orchid\Screens\EmailSenderScreen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,15 +25,15 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('/contact',[ContactController::class,'store'])
-    ->name('contact.store');
+
 
 Route::get('/blog',[BlogController::class,'index'])
     ->name('blog.index');
 
 Route::get('/details',[BlogdetailsController::class,'index']
 )->name('details.index');
-Route::post('/details/comment',[CommentController::class,'store'])
+
+Route::post('/details',[CommentController::class,'store'])
     ->name('details.store');
 
 Route::get('/posts',[PostController::class,'index'])
@@ -61,7 +62,10 @@ Route::get('/plans/{plan}',[PlanController::class,'show'])
 Route::post('/plans',[PlanController::class,'store'])
     ->name('plans.store');
 
-Route::get('/newss',[NewsController::class,'index'])
+Route::resource('/news',NewsController::class);
+
+
+/*Route::get('/newss',[NewsController::class,'index'])
     ->name('news.index');
 Route::get('/newss/create',[NewsController::class,'create'])
     ->name('news.create');
@@ -76,7 +80,14 @@ Route::post('/newss',[NewsController::class,'store'])
 Route::get('/newss/{id}',[NewsController::class,'show'])
     ->name('news.show');
 Route::delete('/newss/{news}',[NewsController::class,'destroy'])
-    ->name('news.destroy')->middleware('auth');
+    ->name('news.destroy')->middleware('auth');*/
+
+Route::post('/contact',[ContactController::class,'store'])
+    ->name('contact.store');
+
+
+Route::screen('email', EmailSenderScreen::class)->name('platform.email');
+
 
 Auth::routes();
 
