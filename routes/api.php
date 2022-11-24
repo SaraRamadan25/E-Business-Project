@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PostController;
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\Api\NewsController;
+use App\Http\Controllers\PlanController;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,11 +20,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 // public routes
+// index store show update destory // doesnt contain create/edit
 
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 
-Route::apiResource('/newss',NewsController::class);
+Route::apiResource('/news',NewsController::class);
+Route::apiResource('/posts',PostController::class);
+Route::apiResource('/plans',PlanController::class);
+
+
+
 
 
 
@@ -38,7 +45,7 @@ Route::apiResource('/newss',NewsController::class);
 // and the other routes that will be visible to any user
 // we will put it as public.
 Route::group(['middleware'=>['auth:sanctum']], function () {
-       Route::apiResource('posts', PostController::class);
+       Route::apiResource('posts', PostController::class)->except('posts.index','posts.show');
 Route::post('/logout',[AuthController::class,'logout']);
 });
 

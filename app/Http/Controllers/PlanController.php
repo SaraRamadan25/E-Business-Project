@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Plan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class PlanController extends Controller
 {
     public function index()
     {
-        $plans = Plan::all();
-        return view('plans.index',compact('plans'));
+        $features = new Collection(['online system','full access','free apps','multiple slider','free domain','support unlimited','payment online','cash back']);
+
+
+            $plans = Plan::all();
+        return view('plans.index',compact('plans','features'));
     }
     public function show(Plan $plan)
     {
@@ -29,7 +33,6 @@ class PlanController extends Controller
             'price'=>'required',
             'features'=>'required',
             'is_true'=>'required|integer',
-
 
         ]);
 

@@ -33,10 +33,12 @@ Route::get('/blog',[BlogController::class,'index'])
 Route::get('/details',[BlogdetailsController::class,'index']
 )->name('details.index');
 
-Route::post('/details',[CommentController::class,'store'])
-    ->name('details.store');
+Route::post('/comments/{id}',[CommentController::class,'store'])
+    ->name('comments.store');
 
-Route::get('/posts',[PostController::class,'index'])
+Route::resource('/posts',PostController::class);
+
+/*Route::get('/posts',[PostController::class,'index'])
     ->name('posts.index');
 Route::get('/posts/create',[PostController::class,'create'])
     ->name('posts.create')->middleware('auth');
@@ -49,10 +51,12 @@ Route::get('/posts/{post}/edit',[PostController::class,'edit'])
 Route::patch('/posts/{post}',[PostController::class,'update'])
     ->name('posts.update')->middleware('auth');
 Route::delete('/posts/{post}',[PostController::class,'destroy'])
-    ->name('posts.destroy')->middleware('auth');
+    ->name('posts.destroy')->middleware('auth');*/
 
 
-Route::get('/plans',[PlanController::class,'index'])
+Route::resource('/plans',PlanController::class);
+
+/*Route::get('/plans',[PlanController::class,'index'])
     ->name('plans.index');
 Route::get('/plans/create',[PlanController::class,'create'])
     ->name('plans.create');
@@ -60,27 +64,27 @@ Route::get('/plans/{plan}',[PlanController::class,'show'])
     ->name('plans.show');
 
 Route::post('/plans',[PlanController::class,'store'])
-    ->name('plans.store');
+    ->name('plans.store');*/
+
 
 Route::resource('/news',NewsController::class);
 
 
-/*Route::get('/newss',[NewsController::class,'index'])
+/*Route::get('/news',[NewsController::class,'index'])
     ->name('news.index');
-Route::get('/newss/create',[NewsController::class,'create'])
+Route::get('/news/create',[NewsController::class,'create'])
     ->name('news.create');
-
-Route::get('/newss/{news}/edit',[NewsController::class,'edit'])
+Route::get('/news/{news}/edit',[NewsController::class,'edit'])
     ->name('news.edit')->middleware('auth'); //dont work
-
-Route::patch('/newss/{news}',[NewsController::class,'update'])
+Route::patch('/news/{news}',[NewsController::class,'update'])
     ->name('news.update')->middleware('auth');
-Route::post('/newss',[NewsController::class,'store'])
+Route::post('/news',[NewsController::class,'store'])
     ->name('news.store');
-Route::get('/newss/{id}',[NewsController::class,'show'])
+Route::get('/news/{id}',[NewsController::class,'show'])
     ->name('news.show');
-Route::delete('/newss/{news}',[NewsController::class,'destroy'])
+Route::delete('/news/{news}',[NewsController::class,'destroy'])
     ->name('news.destroy')->middleware('auth');*/
+
 
 Route::post('/contact',[ContactController::class,'store'])
     ->name('contact.store');

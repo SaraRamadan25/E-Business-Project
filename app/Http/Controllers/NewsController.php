@@ -40,6 +40,7 @@ class NewsController extends Controller
             'description' =>request('description'),
             'image'=>request('image')->store('photos','public'),
 
+
         ]);
         return redirect()->route('news.index');
 
@@ -56,9 +57,9 @@ class NewsController extends Controller
         request()->validate([
             'title'=>'required|string',
             'description'=>'required|string',
-            'image'=>'required|image',
-
+            'image'=>'image',
         ]);
+
         $news->update(request()->all());
         return redirect()->route('news.index');
     }

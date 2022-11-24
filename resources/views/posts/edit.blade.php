@@ -5,8 +5,9 @@
     <input type="text" name="name" value="{{ $post->name }}">
     <input type="text" name="title" value="{{ $post->title }}">
     <input type="text" name="excerpt" value="{{ $post->excerpt }}">
-    <input type="file" name="image" value="{{ $post->image }}">
+    <input type="file" name="image" value="{{ old('image') }}">
     <input type="text" name="content" value="{{ $post->content }}">
+
 
     <button type="submit"> Send</button>
 </form>

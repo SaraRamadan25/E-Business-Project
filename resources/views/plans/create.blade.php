@@ -6,6 +6,10 @@
     Price of the Plan  <input type="text" name="price">  <br /> <br />
 
     1 if special 0 if not    <input type="number" name="is_true"> <br /> <br />
+    @if('is_true'==1)
+        <span class="saleon">top sale</span>
+
+    @endif
     <fieldset>
         <label>features yo want</label>
         <br />
@@ -17,7 +21,6 @@
         <input type="checkbox" name="features[]" value="support unlimited">support unlimited<br />
         <input type="checkbox" name="features[]" value="payment online">payment online<br />
         <input type="checkbox" name="features[]" value="cash back">cash back<br />
-
 
 
 

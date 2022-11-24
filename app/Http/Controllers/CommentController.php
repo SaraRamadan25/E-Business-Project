@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
 
-    public function store()
+    public function store($post_id)
     {
         request()->validate([
             'name'=>'required|string',
@@ -21,11 +21,18 @@ class CommentController extends Controller
             'name' =>request('name'),
             'email' =>request('email'),
             'content' =>request('content'),
-            'user_id' =>'1',
-            'post_id'=>'1'
+            'user_id' =>auth()->id(),
+            'post_id'=>$post_id,
 
         ]);
         return redirect()->route('details.index');
 
     }
+
+
+
+
+
+
+
 }

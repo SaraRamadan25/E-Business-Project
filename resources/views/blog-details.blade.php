@@ -181,7 +181,7 @@
                                 <div class="comment-respond">
                                     <h3 class="comment-reply-title">Leave a Reply </h3>
                                     <span class="email-notes">Your email address will not be published. Required fields are marked *</span>
-                                    <form action="{{ route('details.store')}}" method="POST">
+                                    <form action="{{ url('comments.store')}}/{{ $post->id }}" method="POST">
                                         @csrf
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4">

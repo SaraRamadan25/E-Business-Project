@@ -1,5 +1,5 @@
 <h2> Edit News </h2>
-<form  method="POST" action="{{ route('news.update',[$news]) }}">
+<form  method="POST" action="{{ route('news.update',[$news]) }}" enctype="multipart/form-data">
     @method('PATCH')
     @csrf
     <input type="text" name="title" value="{{ $news->title }}">
