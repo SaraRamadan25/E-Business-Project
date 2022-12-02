@@ -38,10 +38,11 @@
                             <!-- search option end -->
                         </div>
                         <div class="single-blog-page">
-                            @foreach($posts as $post)
+                            <h4>recent post</h4>
+
+                        @foreach($posts as $post)
                             <!-- recent start -->
                             <div class="left-blog">
-                                <h4>recent post</h4>
                                 <div class="recent-post">
                                     <!-- start single post -->
                                     <div class="recent-single-post">
@@ -142,7 +143,7 @@
                                     </p>
                                 </div>
                                 <span>
-                    <a href="blog-details.html" class="ready-btn">Read more</a>
+                    <a href="/posts/{{ $post->id }}" class="ready-btn">Read more</a>
                   </span>
                             </div>
                         </div>

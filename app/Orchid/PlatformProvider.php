@@ -27,20 +27,22 @@ class PlatformProvider extends OrchidServiceProvider
      */
     public function registerMainMenu(): array
     {
+
         return [
-            Menu::make('Example screen')
+
+            Menu::make('posts')
                 ->icon('monitor')
-                ->route('platform.example')
-                ->title('Navigation')
+                ->route('platform.posts')
+                ->title('about Blog')
                 ->badge(function () {
-                    return 6;
+
                 }),
 
             Menu::make('Dropdown menu')
                 ->icon('code')
                 ->list([
-                    Menu::make('Sub element item 1')->icon('bag'),
-                    Menu::make('Sub element item 2')->icon('heart'),
+                    Menu::make('news')->icon('earphones')->route('platform.news'),
+                    Menu::make('plans')->icon('paper-plane')->route('platform.plans'),
                 ]),
 
             Menu::make('Basic Elements')

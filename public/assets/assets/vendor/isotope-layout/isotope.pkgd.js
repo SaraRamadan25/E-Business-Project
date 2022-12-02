@@ -2490,7 +2490,7 @@ return Item;
     }
 
     Mode.prototype.namespace = namespace;
-    // register in Isotope
+    // posts in Isotope
     LayoutMode.modes[ namespace ] = Mode;
 
     return Mode;

@@ -245,12 +245,12 @@
                     <div class="single-team-member">
                         <div class="team-img">
                             <a href="#">
-                                <img src="/storage/photos/{{ $user->avatar }}" class="w-100">
+                                <img src="/storage/{{ $user->avatar }}" >
                             </a>
                             <div class="team-social-icon text-center">
                                 <ul>
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ $user->links }}">
                                             <i class="bi bi-facebook"></i>
                                         </a>
                                     </li>
@@ -452,21 +452,11 @@
                                 <h3>{{ $plan->name }} <br /> <span>{{ $plan->price }} / month</span></h3>
 
                                 @foreach($plan->features as $feature)
-{{--
 
---}}
-                                 {{--   @if(in_array($feature, $features))
                                         <li class="check"><i class="bi bi-check"></i><span>{{ $feature }}</span></li>
-
-                                        @elseif
-                                        <li class="check"><i class="bi bi-x"></i><span>{{ $feature }}</span></li>
-
-                                    @endif--}}
-
+                                     {{--   <li class="check"><i class="bi bi-x"></i><span>{{ $feature }}</span></li>--}}
 
                                 @endforeach
-
-
 
                                 <button onclick="window.location.href='/login';">
                                     sign up now

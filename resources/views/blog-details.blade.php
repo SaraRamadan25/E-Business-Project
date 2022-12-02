@@ -29,7 +29,7 @@
                     <div class="page-head-blog">
                         <div class="single-blog-page">
                             <!-- search option start -->
-                            <form action="#">
+                            <form action="/comments" method="post">
                                 <div class="search-option">
                                     <input type="text" placeholder="Search...">
                                     <button class="button" type="submit">
@@ -50,7 +50,7 @@
                                     <div class="recent-single-post">
                                         <div class="post-img">
                                             <a href="#">
-                                                <img src="/storage/{{ $post->image }}" class="w-100">
+                                                <img src="/storage/{{ $post->image }}" >
                                             </a>
                                         </div>
                                         <div class="pst-content">
@@ -160,7 +160,7 @@
                                                 <div class="comments-details">
                                                     <div class="comments-list-img">
                                                         @if(auth()->user())
-                                                        <img src="/storage/{{ $post->user->avatar }}" class="w-100">
+                                                        <img class="w-25" src="/storage/{{ $post->user->avatar }}">
                                                         @endif
                                                     </div>
                                                     <div class="comments-content-wrap">
@@ -181,8 +181,7 @@
                                 <div class="comment-respond">
                                     <h3 class="comment-reply-title">Leave a Reply </h3>
                                     <span class="email-notes">Your email address will not be published. Required fields are marked *</span>
-                                    <form action="{{ url('comments.store')}}/{{ $post->id }}" method="POST">
-                                        @csrf
+
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4">
                                                 <p>Name *</p>
@@ -197,7 +196,14 @@
                                             <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
                                                 <p>Your Comment</p>
                                                 <textarea name="content" id="message-box" cols="30" rows="10"></textarea>
-                                                <input type="submit" value="Post Comment" />
+
+
+                                             {{--  <form action="{{ route('comments.store'),['id' => $post_id] }}" method="post">
+
+                                                </form>--}}
+
+
+
                                             </div>
                                         </div>
                                     </form>
