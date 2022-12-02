@@ -198,9 +198,9 @@
                                                 <textarea name="content" id="message-box" cols="30" rows="10"></textarea>
 
 
-                                             {{--  <form action="{{ route('comments.store'),['id' => $post_id] }}" method="post">
-
-                                                </form>--}}
+                                               <form action="{{ route('comments.store'),['id' => $post_id] }}" method="post">
+                                                   <button type="submit">Post comment</button>
+                                                </form>
 
 
 
