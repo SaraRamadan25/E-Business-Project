@@ -5,28 +5,20 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NewsResource;
 use App\Models\News;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Validator;
 
 class NewsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(): AnonymousResourceCollection
     {
         return NewsResource::collection(News::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return NewsResource
-     */
-    public function store(Request $request)
+  public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
             "title" =>"required",
@@ -40,40 +32,21 @@ class NewsController extends Controller
             ]);
         }
         $news = new News([
-            "title" => $request->title,
-            "description"=>$request->description,
-            "image"=>$request->image
+            $request->all()
         ]);
         $news->save();
         return new NewsResource($news);
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return array
-     */
     public function show(News $news)
     {
         return new NewsResource($news);
-
     }
 
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, News $news)
+    public function update(Request $request, News $news): NewsResource|JsonResponse
     {
         $validator = Validator::make($request->all(),[
-
+            $attributes =
             "title" =>"required",
             "description"=>"required",
             "image"=>"required"
@@ -87,19 +60,12 @@ class NewsController extends Controller
         $news->title = $request->title;
         $news->description = $request->description;
         $news->image = $request->image;
-
-
         $news->save();
+
          return new NewsResource($news);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(News $news)
+    public function destroy(News $news): JsonResponse
     {
         $news->delete();
         return response()->json([

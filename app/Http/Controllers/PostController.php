@@ -5,60 +5,71 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class PostController extends Controller
 {
-    public function index()
+
+    public function index(): view
     {
-        $posts = Post::all();
+        $posts = Post::query()
+        ->latest()
+        ->paginate();
         return view('posts.index',compact('posts'));
     }
 
-    public function show(Post $post){
+    public function show(Post $post): view
+    {
         return view('posts.show',compact('post'));
     }
 
-    public function create()
+    public function create(): view
     {
         return view('posts.create',[
             'tags'=>Tag::all(),
             'categories'=>Category::all()
    ]);
     }
-
-    public function store()
+    public function store(): RedirectResponse
     {
 
-        request()->validate([
-            'name'=>'required|string',
-            'image'=>'required|image',
-            'title'=>'required|string',
-            'excerpt'=>'required|string',
-            'content'=>'required|string'
+       $attributes = request()->validate([
+            'name' => 'required|string',
+            'image' => 'required|image',
+            'title' => 'required|string',
+            'excerpt' => 'required|string',
+            'content' => 'required|string',
+            'user_id'=>'int'
 
         ]);
 
         $post = Post::create([
-            'name' =>request('name'),
-            'image'=>request('image')->store('photos','public'),
-            'title' =>request('title'),
-            'excerpt' =>request('excerpt'),
-            'content' =>request('content'),
+            'name' => $attributes['name'],
+            'title' => $attributes['title'],
+            'excerpt' => $attributes['excerpt'],
+            'content' => $attributes['content'],
+            'image' => $attributes['image']->store('photos', 'public'),
             'user_id' => auth()->id(),
         ]);
-        return redirect()->route('posts.index');
+        $post
+            ->tags()
+            ->sync(request('tags'));
 
+        $post->categories()
+            ->sync(request('categories'));
+        return redirect()->route('posts.index');
     }
 
-    public function edit(Post $post)
+
+
+    public function edit(Post $post): view
     {
 
         return view('posts.edit',compact('post'));
     }
 
-    public function update(Post $post)
+    public function update(Post $post): RedirectResponse
     {
         request()->validate([
             'title'=>'required|string',
@@ -68,10 +79,14 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 
-    public function destroy(Post $post)
+    public function destroy(Post $post): RedirectResponse
     {
         $post->delete();
         return redirect()->route('posts.index');
     }
 
 }
+
+/*
+
+*/

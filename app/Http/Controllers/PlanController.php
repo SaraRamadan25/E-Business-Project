@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class PlanController extends Controller
 {
@@ -13,7 +16,7 @@ class PlanController extends Controller
         $features = new Collection(['online system','full access','free apps','multiple slider','free domain','support unlimited','payment online','cash back']);
 
 
-            $plans = Plan::all();
+            $plans = Plan::query()->get()->all();
         return view('plans.index',compact('plans','features'));
     }
     public function show(Plan $plan)
@@ -21,14 +24,14 @@ class PlanController extends Controller
         return view('plans.show',compact('plan'));
     }
 
-    public function create()
+    public function create(): view
     {
         return view('plans.create');
     }
-    public function store()
+    public function store(): RedirectResponse
     {
 
-        request()->validate([
+        $attributes = request()->validate([
             'name'=>'required|string',
             'price'=>'required',
             'features'=>'required',
@@ -37,10 +40,12 @@ class PlanController extends Controller
         ]);
 
         $plan = Plan::create([
-            'name' =>request('name'),
-            'price'=>request('price'),
-            'is_true'=>request('is_true'),
-            'features'=>request('features')
+            'name'=>$attributes['name'],
+            'price'=>$attributes['price'],
+            'features'=>$attributes['features'],
+            'is_true'=>$attributes['is_true'],
+
+
 
 
         ]);

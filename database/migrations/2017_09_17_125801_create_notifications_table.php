@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateNotificationsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         if (! Schema::hasTable('notifications')) {
@@ -25,11 +21,7 @@ class CreateNotificationsTable extends Migration
         }
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('notifications');

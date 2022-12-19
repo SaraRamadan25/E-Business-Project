@@ -13,7 +13,8 @@
         "laravel/sanctum": "*",
         "laravel/tinker": "^2.5",
         "laravel/ui": "*",
-        "orchid/platform": "*"
+        "orchid/platform": "*",
+        "spatie/laravel-query-builder": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

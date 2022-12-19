@@ -576,7 +576,7 @@
                         <div class="single-blog">
                             <div class="single-blog-img">
                                 <a href="blog.html">
-                                    @foreach($newss as $news)
+                                    @foreach($news as $news)
                                         <img src="/storage/{{ $news->image }}" class="w-100">
                                 </a>
                             </div>

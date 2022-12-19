@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateOrchidRolesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {

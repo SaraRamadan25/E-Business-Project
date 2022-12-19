@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateOrchidAttachmentstableTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up()
     {
         Schema::create('attachments', function (Blueprint $table) {
@@ -45,9 +42,7 @@ class CreateOrchidAttachmentstableTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down()
     {
         Schema::drop('attachmentable');

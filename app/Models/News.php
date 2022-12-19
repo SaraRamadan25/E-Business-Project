@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class News extends Model
 {
-    protected $table = 'newss';
-    protected $guarded=[];
-
     use HasFactory;
-    public function comments()
+
+    protected $table = 'news';
+    protected $fillable=['title','description','image'];
+
+
+    public function comments(): hasMany
     {
         return $this->hasMany(Comment::class);
     }

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\NewsController;
+use App\Http\Controllers\Api\TagController;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // public routes
-// index store show update destroy // doesnt contain create/edit
+// index store show update destroy // doesn't contain create/edit
 
 
 
@@ -28,6 +30,10 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('/news',NewsController::class);
 Route::apiResource('/posts',PostController::class);
 Route::apiResource('/plans',PlanController::class);
+Route::apiResource('/posts/{id}/comments',CommentController::class);
+Route::apiResource('/comments',CommentController::class);
+Route::apiResource('/tags',TagController::class);
+
 
 
 

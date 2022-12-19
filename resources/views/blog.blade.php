@@ -103,7 +103,7 @@
                                     <ul>
                                         @foreach($tags as $tag)
                                         <li>
-                                            <a href="#">{{ $tag->name }}</a>
+                                            <a href="/posts?filter[name]={{$tag->name}}">{{ $tag->name }}</a>
                                         </li>
                                         @endforeach
 
@@ -121,7 +121,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="single-blog">
                                 <div class="single-blog-img">
-                                    <a href="blog-details.html">
+                                    <a href="#">
                                         <img src="/storage/{{ $post->image }}" class="w-100">                                            </a>
                                     </a>
                                 </div>

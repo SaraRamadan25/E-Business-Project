@@ -6,14 +6,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PlanResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
-    public function toArray($request)
+    public function toArray($request): array
     {
-        return parent::toArray($request);
+        return [
+            "name"=>$this->name,
+            "price"=>$this->price,
+            "features"=>$this->features,
+        ];
     }
 }

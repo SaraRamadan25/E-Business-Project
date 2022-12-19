@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class ContactController extends Controller
 {
 
-    public function store()
+    public function store(): RedirectResponse
     {
-        request()->validate([
+       $attributes = request()->validate([
             'name'=>'required|string',
             'subject'=>'required|string',
             'message'=>'required|string',
@@ -19,11 +21,13 @@ class ContactController extends Controller
         ]);
 
         $message = Contact::create([
-            'name' =>request('name'),
-            'subject' =>request('subject'),
-            'message' =>request('message'),
-            'email' =>request('email')
+            'name'=> $attributes['name'],
+            'subject'=> $attributes['subject'],
+            'message'=> $attributes['message'],
+            'email'=> $attributes['email'],
+
         ]);
+
         return redirect()->route('home');
 
     }

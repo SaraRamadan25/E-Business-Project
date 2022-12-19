@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateOrchidRoleUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up()
     {
         Schema::create('role_users', function (Blueprint $table) {
@@ -28,9 +26,7 @@ class CreateOrchidRoleUsersTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down()
     {
         Schema::dropIfExists('role_users');

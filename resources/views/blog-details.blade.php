@@ -29,7 +29,7 @@
                     <div class="page-head-blog">
                         <div class="single-blog-page">
                             <!-- search option start -->
-                            <form action="/comments" method="post">
+                            <form action="#" method="post">
                                 <div class="search-option">
                                     <input type="text" placeholder="Search...">
                                     <button class="button" type="submit">
@@ -50,20 +50,23 @@
                                     <div class="recent-single-post">
                                         <div class="post-img">
                                             <a href="#">
-                                                <img src="/storage/{{ $post->image }}" >
+
+                                                <img src="/storage/{{ $post->image }}" alt="no image" >
+
+
                                             </a>
                                         </div>
                                         <div class="pst-content">
                                             <p><a href="#">{{ $post->excerpt }}</a></p>
                                         </div>
                                     </div>
-                                @endforeach
                                     <!-- End single post -->
                                 </div>
                             </div>
                             <!-- recent end -->
                             <!-- recent end -->
                         </div>
+                        @endforeach
                         <div class="single-blog-page">
                             <div class="left-blog">
                                 <h4>categories</h4>
@@ -134,7 +137,7 @@
                                         <span class="tag-meta">
                                             @foreach($tags as $tag)
                         <i class="bi bi-folder"></i>
-                        <a href="#">{{ $tag->name }}</a>,
+                        <a href="/posts/tags/{tag}">{{ $tag->name }}</a>,
                       </span>
 
                                         @endforeach
@@ -178,38 +181,50 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                <div class="comment-respond">
-                                    <h3 class="comment-reply-title">Leave a Reply </h3>
-                                    <span class="email-notes">Your email address will not be published. Required fields are marked *</span>
-
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-4">
-                                                <p>Name *</p>
-                                                <input type="text" name="name" />
-                                            </div>
-                                            <div class="col-lg-4 col-md-4">
-                                                <p>Email *</p>
-                                                <input type="email" name="email" />
-                                            </div>
 
 
-                                            <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
-                                                <p>Your Comment</p>
-                                                <textarea name="content" id="message-box" cols="30" rows="10"></textarea>
 
 
-                                               <form action="{{ route('comments.store'),['id' => $post_id] }}" method="post">
-                                                   <button type="submit">Post comment</button>
+                                                <form method="post" action="{{ url('/posts/' . $post->id . '/comments') }}">
+                                                    @csrf
+                                                    <div class="comment-respond">
+                                                        <h3 class="comment-reply-title">Leave a Reply </h3>
+                                                        <span class="email-notes">Your email address will not be published. Required fields are marked *</span>
+
+                                                        <div class="row">
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <p>Name *</p>
+                                                                <input type="text" name="name" />
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <p>Email *</p>
+                                                                <input type="email" name="email" />
+                                                            </div>
+
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
+                                                                <p>Your Comment</p>
+                                                                <textarea name="content" id="message-box" cols="30" rows="10"></textarea>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <input type="submit" value="Post Comment" class="btn btn-primary btn-lg" data-loading-text="Loading...">
+                                                        </div>
+                                                    </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </form>
+                                        </ul>
 
-
-
-                                            </div>
-                                        </div>
-                                    </form>
+                                </div>
                                 </div>
 
                                     </ul>
+                                    </div>
+                                </div>
+
                                 </div>
                  </ul>
                             <!-- single-blog end -->

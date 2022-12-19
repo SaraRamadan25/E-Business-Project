@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use App\Orchid\Screens\EmailSenderScreen;
 use App\Orchid\Screens\posts;
 use Illuminate\Support\Facades\Auth;
@@ -28,11 +29,14 @@ use Illuminate\Support\Facades\Route;
 
 
 
+//filtering
+Route::get('/posts/tags/{tag}',[TagController::class,'index']);
+
 
 Route::get('/blog',[BlogController::class,'index'])
     ->name('blog.index');
 
-Route::post('/comments/{id}',[CommentController::class,'store'])->name('comments.store');
+Route::post('/posts/{id}/comments',[CommentController::class,'store']);
 
 Route::get('/details',[BlogdetailsController::class,'index']
 )->name('details.index');
@@ -98,6 +102,8 @@ Route::screen('email', EmailSenderScreen::class)->name('platform.email');
 Route::screen('/posts', posts::class)->name('platform.posts');
 Route::screen('/news', posts::class)->name('platform.news');
 Route::screen('/plans', posts::class)->name('platform.plans');
+
+
 
 
 

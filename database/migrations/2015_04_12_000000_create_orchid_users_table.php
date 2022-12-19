@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateOrchidUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
@@ -16,9 +14,7 @@ class CreateOrchidUsersTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
