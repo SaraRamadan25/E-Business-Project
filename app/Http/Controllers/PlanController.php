@@ -11,12 +11,10 @@ use Illuminate\View\View;
 
 class PlanController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $features = new Collection(['online system','full access','free apps','multiple slider','free domain','support unlimited','payment online','cash back']);
-
-
-            $plans = Plan::query()->get()->all();
+        $plans = Plan::query()->get()->all();
         return view('plans.index',compact('plans','features'));
     }
     public function show(Plan $plan)
@@ -44,12 +42,8 @@ class PlanController extends Controller
             'price'=>$attributes['price'],
             'features'=>$attributes['features'],
             'is_true'=>$attributes['is_true'],
-
-
-
-
         ]);
-return redirect()->route('plans.index');
+            return redirect()->route('plans.index');
     }
 
 
