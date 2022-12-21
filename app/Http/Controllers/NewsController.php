@@ -11,6 +11,10 @@ use Illuminate\View\View;
 
 class NewsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'delete']]);
+    }
     public function index(): view
     {
         $news = News::query()->latest()->take(3)->get();

@@ -10,7 +10,10 @@ use Illuminate\View\View;
 
 class PostController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'delete']]);
+    }
     public function index(): view
     {
         $posts = Post::query()
@@ -56,16 +59,14 @@ class PostController extends Controller
             ->tags()
             ->sync(request('tags'));
 
-        $post->categories()
+        $post
+            ->categories()
             ->sync(request('categories'));
         return redirect()->route('posts.index');
     }
 
-
-
     public function edit(Post $post): view
     {
-
         return view('posts.edit',compact('post'));
     }
 
@@ -87,6 +88,4 @@ class PostController extends Controller
 
 }
 
-/*
 
-*/

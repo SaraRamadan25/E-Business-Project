@@ -11,6 +11,12 @@ use Illuminate\View\View;
 
 class PlanController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'delete']]);
+    }
+
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $features = new Collection(['online system','full access','free apps','multiple slider','free domain','support unlimited','payment online','cash back']);
@@ -45,6 +51,8 @@ class PlanController extends Controller
         ]);
             return redirect()->route('plans.index');
     }
+
+
 
 
 }
